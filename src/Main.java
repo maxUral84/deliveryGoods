@@ -1,6 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     private static final String COMMAND_EXT_TEXT = "end";
@@ -10,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Map<Address, Integer> costPerAddress = new HashMap<>();
+        Set<String> uniqueCountries = new HashSet<>();
         String country;
         String city;
         int totalCost = 0;
@@ -44,9 +43,13 @@ public class Main {
                         int cost = costPerAddress.get(address) * weight;
                         totalCost += cost;
 
+                        uniqueCountries.add(country.toLowerCase());
+
                         System.out.println("\nСтоимость доставки составит: " + cost + " руб.");
 
                         System.out.println("\nОбщая стоимость всех доставок: " + totalCost + " руб.");
+
+                        System.out.println("Количество уникальных стран с доставкой: " + uniqueCountries.size());
                     } else {
                         System.out.println("\nДоставки по этому адресу нет");
                     }
